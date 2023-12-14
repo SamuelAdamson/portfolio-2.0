@@ -27,7 +27,7 @@ def get_leetcode_metrics():
 def _get_github_repos(username: str, token: str) -> list[str] | None:
     """ Get a list of all repositories for a user """
 
-    api_url = f"https://api.github.com/user/repos"
+    api_url = "https://api.github.com/user/repos"
 
     res = requests.get(api_url, auth=(username, token))
 
