@@ -2,7 +2,7 @@
 # Portfolio Page
 # Refresh -- Query
 
-""" Helper functions for querying cloud metrics """
+""" Helper functions for querying user metrics """
 
 import os
 import requests
