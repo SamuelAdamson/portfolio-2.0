@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Run with `source load_environment_variables.sh`
+# Run with `source load_environment_variables.sh <sourec_directory>`
 
 # The purpose of this script is to load environment variables from a .env file
 # in development environments. In Python Google Cloud Functions, environment
