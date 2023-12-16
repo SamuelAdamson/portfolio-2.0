@@ -4,48 +4,35 @@
 
 """ Helper functions for querying user metrics """
 
-import os
 import requests
 import logging
 from datetime import datetime, timedelta
 
 
-def get_github_contributions() -> tuple[int, dict]:
+def get_github_contributions(gh_username: str, gh_token: str) -> tuple[int, dict]:
     """ Get github contributions in the last year grouped by month """
-
-    username = os.environ.get("GH_USERNAME")
-    token = os.environ.get("GH_TOKEN")
 
     last_year = _get_last_year()
     
-    total, months = _get_github_contributions_since(username, token, last_year)
+    total, months = _get_github_contributions_since(gh_username, gh_token, last_year)
 
     return total, months
 
 
-def get_github_repos(max_len: int=12) -> list:
+def get_github_repos(gh_username: str, gh_token: str, max_len: int=6) -> list:
     """ Get github public repositories sorted by recency """
-
-    username = os.environ.get("GH_USERNAME")
-    token = os.environ.get("GH_TOKEN")
 
     last_year = _get_last_year()
 
-    repos = _get_github_repos_since(
-        username,
-        token,
-        last_year
-    )
+    repos = _get_github_repos_since(gh_username, gh_token, last_year)
 
-    return repos
+    return repos[:max_len]
 
 
-def get_leetcode_metrics() -> dict:
+def get_leetcode_solved(lc_username: str) -> dict:
     """ Get number of solved hard, medium, and easy leetcode problems """
 
-    username = os.environ.get("LC_USERNAME")
-
-    solved = _get_leetcode_problem_count(username)
+    solved = _get_leetcode_problem_count(lc_username)
 
     return solved
 
