@@ -40,9 +40,14 @@ def get_github_repos(max_len: int=12) -> list:
     return repos
 
 
-def get_leetcode_metrics():
+def get_leetcode_metrics() -> dict:
     """ Get number of solved hard, medium, and easy leetcode problems """
 
+    username = os.environ.get("LC_USERNAME")
+
+    solved = _get_leetcode_problem_count(username)
+
+    return solved
 
 
 def _get_github_contributions_since(
@@ -55,7 +60,7 @@ def _get_github_contributions_since(
     Returns : (total contributions, contributions by date)
     """
 
-    api_url = f"https://api.github.com/graphql"
+    api_url = "https://api.github.com/graphql"
 
     query = f"""
     {{
@@ -152,10 +157,45 @@ def _get_github_repos_since(
     return None
 
 
-def _get_leetcode_problem_count() -> dict[str, int] | None:
+def _get_leetcode_problem_count(username: str) -> dict[str, int] | None:
     """ Get leetcode problems grouped by difficulty """
 
-    
+    api_url = "https://leetcode.com/graphql"
+
+    query = f"""
+    {{
+        matchedUser(username: \"{username}\") {{
+            submitStats: submitStatsGlobal {{
+                acSubmissionNum {{
+                    difficulty
+                    count
+                    submissions
+                }}
+            }}
+        }}
+    }}
+    """
+
+    res = requests.post(api_url, json={"query": query})
+
+    if res.status_code == 200:
+
+        data = res.json()
+        subs = data["data"]["matchedUser"]["submitStats"]["acSubmissionNum"]
+
+        solved = {
+            str(sub["difficulty"]).lower(): sub["count"]
+            for sub in subs
+        }
+
+        return solved
+
+    else:
+
+        logging.error(f"Leetcode API request failed for {api_url}!")
+        logging.error(f"{res.status_code} {res.text}")
+
+    return None
 
 
 def _get_last_year() -> datetime:
@@ -186,5 +226,3 @@ def _get_month_dict(since: datetime) -> dict[str, 0]:
         months[m.strftime("%Y-%m")] = 0
 
     return months
-
-get_github_repos()

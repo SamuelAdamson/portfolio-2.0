@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# Run with `source load_environment_variables.sh <sourec_directory>`
+# Run with 'source load_environment_variables.sh <sourec_directory>'
 
 # The purpose of this script is to load environment variables from a .env file
-# in development environments. In Python Google Cloud Functions, environment
-# variables are accessed using `os.environ.get()`. Thus, we are storing 
-# environment variables in the same way.
+# in development environments. In Python Google Cloud Run, environment
+# variables are accessed using 'os.environ.get()'. Thus, we are storing 
+# environment variables in the same way as opposed to using python-dotenv.
 
 load_env_file() {
     env_file="$1"
