@@ -9,14 +9,15 @@ import logging
 from datetime import datetime, timedelta
 
 
-def get_github_contributions(gh_username: str, gh_token: str) -> tuple[int, dict]:
+def get_github_contributions(gh_username: str, gh_token: str) -> dict:
     """ Get github contributions in the last year grouped by month """
 
     last_year = _get_last_year()
     
     total, months = _get_github_contributions_since(gh_username, gh_token, last_year)
+    data = {"total": total, "months": months}
 
-    return total, months
+    return data
 
 
 def get_github_repos(gh_username: str, gh_token: str, max_len: int=6) -> list:
@@ -25,16 +26,21 @@ def get_github_repos(gh_username: str, gh_token: str, max_len: int=6) -> list:
     last_year = _get_last_year()
 
     repos = _get_github_repos_since(gh_username, gh_token, last_year)
+    
+    data = [
+        {"name": repo[0], "url": repo[1]}
+        for repo in repos
+    ]
 
-    return repos[:max_len]
+    return data
 
 
 def get_leetcode_solved(lc_username: str) -> dict:
     """ Get number of solved hard, medium, and easy leetcode problems """
 
-    solved = _get_leetcode_problem_count(lc_username)
+    data = _get_leetcode_problem_count(lc_username)
 
-    return solved
+    return data
 
 
 def _get_github_contributions_since(
@@ -106,7 +112,7 @@ def _get_github_repos_since(
     username: str,
     token: str,
     since: datetime
-) -> list[str] | None:
+) -> list | None:
     """ Get a list of all repositories for a user which have been updated
     since a given date, sorted by most recently updated
     """
@@ -128,15 +134,17 @@ def _get_github_repos_since(
 
         for repo in data:
 
-            if "full_name" not in repo or "updated_at" not in repo:
+            if not (
+                "full_name" in repo and "updated_at" in repo and "url" in repo
+            ):
 
                 logging.error(f"GitHub API schema has changed for {api_url}!")
                 return None
             
-            repos.append((repo["full_name"], repo["updated_at"]))
+            repos.append((repo["full_name"], repo["url"], repo["updated_at"]))
 
-        sorted_repos = sorted(repos, key=lambda r: r[1], reverse=True)
-        return [repo[0] for repo in sorted_repos]
+        sorted_repos = sorted(repos, key=lambda r: r[2], reverse=True)
+        return [(repo[0], repo[1]) for repo in sorted_repos]
 
     logging.error(f"GitHub API request failed for {api_url}!")
     logging.error(f"{res.status_code} {res.text}")
