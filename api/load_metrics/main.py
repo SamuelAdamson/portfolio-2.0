@@ -1,6 +1,6 @@
 # Samuel Adamson (giibbu)
 # Portfolio Page
-# Refresh -- Main
+# Load Metrics -- Main
 
 """ Update Cloud Firestore with user metrics """
 

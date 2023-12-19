@@ -1,6 +1,6 @@
 # Samuel Adamson (giibbu)
 # Portfolio Page
-# Refresh -- Query
+# Load Metrics -- Query
 
 """ Helper functions for querying user metrics """
 
