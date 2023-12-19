@@ -7,7 +7,7 @@
 
 terraform {
     backend "gcs" {
-        bucket  = var.gcp_backend_bucket
+        bucket  = "giibbu-portfolio-tf-backend"     # NOTE variables cannot be used here (reset this value)
         prefix  = "terraform/state"
     }
 }

@@ -2,3 +2,5 @@
 **/.env
 
 **/*.tfvars
+**/.terraform/
+**/.terraform.lock.hcl

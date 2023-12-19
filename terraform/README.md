@@ -32,6 +32,7 @@ in `terraform.tfvars`
 gcp_project_id = "some_project_name"
 ```
 
+_note_: terraform variables cannot be used when configuring the backend for remote state file management. so, you must update the `backend.tf` file with the appropriate cloud storage bucket name.
 
 ## modules.
 

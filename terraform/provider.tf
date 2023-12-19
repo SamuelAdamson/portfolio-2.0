@@ -4,7 +4,7 @@
 
 provider "google" {
     project         = var.gcp_project_id
-    access_token    = data.gcp_service_account_access_token.default.access_token
+    access_token    = data.google_service_account_access_token.default.access_token
 }
 
 provider "google" {
@@ -19,7 +19,7 @@ locals {
     tf_service_account = var.gcp_service_account
 }
 
-data "gcp_service_account_access_token" "default" {
+data "google_service_account_access_token" "default" {
     provider                = google.impersonation
     target_service_account  = local.tf_service_account
     scopes                  = ["userinfo-email", "cloud-platform"]
