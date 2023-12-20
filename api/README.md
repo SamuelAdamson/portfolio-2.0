@@ -35,8 +35,31 @@ _note_: the docker container is intended to be run from a deployed google cloud 
 
 #### load_metrics - upload container image to GCP.
 
+before the docker container image can be used with google cloud resources like cloud run, the container image needs to be pushed to google container registry (GCR). [full tutorial](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling)
 
+_first_, you must ensure that the artifact registry API is enabled in your project and create a docker image repository [simple instructions](https://cloud.google.com/artifact-registry/docs/repositories/create-repos).
 
-#### load_metrics - deploy.
+_next_, ensure that you are authenticated to the gcr repository. you can do this using the following gcloud SDK command.
 
-TODO
+```
+gcloud auth configure-docker
+```
+
+_troubleshooting authentication_: a token may be required to authenticate to gcloud
+```
+gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://<LOCATION>-docker.pkg.dev
+```
+
+_next_, ensure that your local docker image is properly tagged for GCR.
+
+```
+docker tag <LOCALIMAGE_ID> <LOCATION>-docker.pkg.dev/<PROJECT_ID>/<REPOSITORY>/<IMAGE>:<TAG>
+```
+
+where `LOCATION` is the location for our image repository configured in GCP.
+
+_finally_, push your image to the GCR.
+
+```
+docker push <LOCATION>-docker.pkg.dev/<PROJECT_ID>/<REPOSITORY>/<IMAGE>:<TAG>
+```
