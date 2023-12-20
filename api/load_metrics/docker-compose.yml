@@ -1,0 +1,10 @@
+version: '3'
+services:
+  load_metrics:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: load-metrics:giibbu-portfolio-load-metrics
+    env_file:
+      - .env
+    command: ["python", "main.py"]
