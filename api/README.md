@@ -1,7 +1,7 @@
 ## api.
 <br/>
 
-the portfolio application requires multiple services to curate and display user metrics pertaining to github and leetcode. these services are designed to be hosted on google cloud platform.
+the portfolio application requires multiple services to curate and display user metrics pertaining to github and leetcode. these services are designed to be hosted on google cloud platform (GCP).
 
 ### load_metrics.
 
@@ -32,6 +32,10 @@ docker images
 the image should be tagged `giibbu-portfolio-load-metrics`
 
 _note_: the docker container is intended to be run from a deployed google cloud resource (cloud run), and thus the credentials of a service account are not explicitly defined in the container environment. you will need to specify google service account credentials to run the container locally.
+
+#### load_metrics - upload container image to GCP.
+
+
 
 #### load_metrics - deploy.
 
