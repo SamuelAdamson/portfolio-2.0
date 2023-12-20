@@ -27,10 +27,13 @@ def get_github_repos(gh_username: str, gh_token: str, max_len: int=6) -> list:
 
     repos = _get_github_repos_since(gh_username, gh_token, last_year)
     
-    data = [
-        {"name": repo[0], "url": repo[1]}
-        for repo in repos
-    ]
+    data = {
+        "repos":
+            [
+                {"name": repo[0], "url": repo[1]}
+                for repo in repos[:max_len]
+            ]
+    }
 
     return data
 

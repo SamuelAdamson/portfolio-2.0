@@ -5,7 +5,7 @@
 """ Update Cloud Firestore with user metrics """
 
 import os
-from .query import get_github_contributions, \
+from query import get_github_contributions, \
     get_github_repos, \
     get_leetcode_solved
 
@@ -30,7 +30,8 @@ def load_metrics() -> None:
     gh_repos = get_github_repos(gh_username, gh_token)
     lc_solved = get_leetcode_solved(lc_username)
 
-    db = firestore.Client() # firestore client
+    database = os.environ.get("FIRESTORE_DB")
+    db = firestore.Client(database=database) # firestore client
 
     gh_contributions_doc = db.collection(COLLECTION).document(GH_CONTRIB_DOC)
     gh_repos_doc = db.collection(COLLECTION).document(GH_REPOS_DOC)
