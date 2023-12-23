@@ -11,13 +11,13 @@ see the following tutorial to configure service account impersonation [link](htt
 
 note that your service account will need read/write access to the following resources:
 * cloud run
-* cloud cdn
+* cloud functions
 * cloud firestore (cloud datastore)
-* TODO
+
 
 ## variables.
 
-terraform variables are initialied in the `variables.tf` file and values should be set in a file named `terraform.tfvars`. the latter file is excluded from source control. view the `variables.tf` file for a list of variables and set values as necessary in your `terraform.tfvars` file. for example:
+terraform variables are declared in the `variables.tf` file(s) and values should be set in a file named `terraform.tfvars`. the latter file is excluded from source control. view the `variables.tf` file for a list of variables and set values as necessary in your `terraform.tfvars` file. for example:
 
 in `variables.tf`
 ```
@@ -32,7 +32,7 @@ in `terraform.tfvars`
 gcp_project_id = "some_project_name"
 ```
 
-_note_: terraform variables cannot be used when configuring the backend for remote state file management. so, you must update the `backend.tf` file with the appropriate cloud storage bucket name.
+_note_: terraform variables cannot be used when configuring the backend for remote state file management. so, if you intend to use a remote backend, you must update the `backend.tf` file with the appropriate cloud storage bucket name.
 
 ## modules.
 

@@ -50,7 +50,7 @@ def _get_github_contributions_since(
     username: str,
     token: str,
     since: datetime,
-) -> tuple[int, dict] | tuple[None, None]:
+) -> tuple[int, dict]:
     """ Get the contributions by a user since a given date 
     
     Returns : (total contributions, contributions by date)
@@ -115,7 +115,7 @@ def _get_github_repos_since(
     username: str,
     token: str,
     since: datetime
-) -> list | None:
+) -> list:
     """ Get a list of all repositories for a user which have been updated
     since a given date, sorted by most recently updated
     """
@@ -155,7 +155,7 @@ def _get_github_repos_since(
     return None
 
 
-def _get_leetcode_problem_count(username: str) -> dict[str, int] | None:
+def _get_leetcode_problem_count(username: str) -> dict[str, int]:
     """ Get leetcode problems grouped by difficulty """
 
     api_url = "https://leetcode.com/graphql"
