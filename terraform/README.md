@@ -36,4 +36,4 @@ _note_: terraform variables cannot be used when configuring the backend for remo
 
 ## modules.
 
-each service has its own module. the file structure of terraform configuration files mirrors the source code file structure.
+modules are used to separate infrastructure into related services. each module has a group of resources necessary to deploy a particular service.
