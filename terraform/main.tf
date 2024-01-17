@@ -24,3 +24,5 @@ module "load_metrics_service" {
     env_gh_token                = var.load_metrics_env_gh_token
     env_lc_username             = var.load_metrics_env_lc_username
 }
+
+

@@ -63,3 +63,27 @@ _finally_, push your image to the GCR.
 ```
 docker push <LOCATION>-docker.pkg.dev/<PROJECT_ID>/<REPOSITORY>/<IMAGE>:<TAG>
 ```
+
+### gh_contributions (endpoint).
+
+the `gh_contributions` REST API endpoint (TODO insert URL) serves the monthly github contributions for the owner of the portfolio page.
+
+#### response format.
+
+TODO
+
+### gh_repos (endpoint).
+
+the `gh_repos` REST API endpoint (TODO insert URL) serves the recently accessed github repositories for the owner of the portfolio page.
+
+#### response format.
+
+TODO
+
+### lc_solved (endpoint).
+
+the `lc_solved` REST API endpoint (TODO insert URL) serves the number of solved leetcode problems in each category (_easy_, _medium_, _hard_) for the owner of the portfolio page.
+
+#### response format.
+
+TODO
