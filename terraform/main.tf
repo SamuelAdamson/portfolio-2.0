@@ -2,6 +2,9 @@
 # Portfolio Page
 # Terraform Configuration -- Main
 
+# Data resource for project
+data "google_project" "default" {}
+
 # Firestore DB for metrics
 resource "google_firestore_database" "metrics_db" {
     project                 = var.gcp_project_id
@@ -17,6 +20,7 @@ module "load_metrics_service" {
     source = "./modules/load_metrics"
 
     gcp_region              = var.gcp_primary_region
+    gcp_project_number      = data.google_project.default.number
     metrics_firestore_id    = var.gcp_firestore_id
 
     cloud_run_container_image   = var.load_metrics_container_image
@@ -24,5 +28,3 @@ module "load_metrics_service" {
     env_gh_token                = var.load_metrics_env_gh_token
     env_lc_username             = var.load_metrics_env_lc_username
 }
-
-

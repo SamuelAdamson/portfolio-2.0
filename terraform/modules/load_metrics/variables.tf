@@ -7,6 +7,11 @@ variable gcp_region {
     type        = string
 }
 
+variable gcp_project_number {
+    description = "Project Number of GCP Project"
+    type        = string
+}
+
 variable metrics_firestore_id {
     description = "Firestore Database Name for Project"
     type        = string
@@ -39,4 +44,23 @@ variable env_gh_token {
 variable env_lc_username {
     description = "Load Metrics Environment Variable -- Leetcode Username"
     type        = string
+}
+
+# Load metrics cloud scheduler
+variable cloud_scheduler_name {
+    description = "Load Metrics Scheduler Name"
+    type        = string
+    default     = "load-metrics-scheduler"
+}
+
+variable cloud_scheduler_description {
+    description = "Load Metrics Scheduler Name"
+    type        = string
+    default     = "Schedule for Metrics Refresh"
+}
+
+variable schedule {
+    description = "Load Metrics Schedule (Cron Expression)"
+    type        = string
+    default     = "0 2 * * *"
 }
