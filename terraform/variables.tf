@@ -8,8 +8,13 @@ variable gcp_project_id {
     type        = string
 }
 
-variable gcp_service_account {
+variable gcp_service_account_tf {
     description = "GCP Terraform Service Account"
+    type        = string
+}
+
+variable gcp_service_account_invoker {
+    description = "GCP Invoker Service Account"
     type        = string
 }
 
@@ -30,7 +35,6 @@ variable gcp_firestore_id {
     type        = string
     default     = "metrics"
 }
-
 
 # Load Metrics Variables
 variable load_metrics_container_image {

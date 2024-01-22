@@ -16,7 +16,7 @@ provider "google" {
 }
 
 locals {
-    tf_service_account = var.gcp_service_account
+    tf_service_account = var.gcp_service_account_tf
 }
 
 data "google_service_account_access_token" "default" {

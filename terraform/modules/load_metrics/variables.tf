@@ -64,3 +64,8 @@ variable schedule {
     type        = string
     default     = "0 2 * * *"
 }
+
+variable cloud_run_invoker {
+    description = "Cloud Run Invoker Service Account"
+    type        = string
+}

@@ -41,7 +41,7 @@ resource "google_cloud_run_v2_job" "load_metrics" {
     }
 }
 
-resource "google_cloud _scheduler_job" "load_metrics_scheduler" {
+resource "google_cloud_scheduler_job" "load_metrics_scheduler" {
     name        = var.cloud_scheduler_name
     description = var.cloud_scheduler_description
     schedule    = var.schedule
@@ -54,5 +54,9 @@ resource "google_cloud _scheduler_job" "load_metrics_scheduler" {
     http_target {
         http_method = "POST"
         uri         = "https://${google_cloud_run_v2_job.load_metrics.location}-run.googleapis.com/apis/run.googleapis.com/v1/namespaces/${var.gcp_project_number}/jobs/${google_cloud_run_v2_job.load_metrics.name}:run"
+
+        oauth_token {
+            service_account_email = var.cloud_run_invoker
+        }
     }
 }
