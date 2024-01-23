@@ -1,19 +1,19 @@
-## api.
+## api
 <br/>
 
 the portfolio application requires multiple services to curate and display user metrics pertaining to github and leetcode. these services are designed to be hosted on google cloud platform (GCP).
 
-### load_metrics.
+### load_metrics
 
-the `load_metrics` service is a batch data update for metrics including github contributions, recent github repositories and leetcode problem solved count. this batch is packaged as an event-driven cloud run job triggered by a cron job (cloud scheduler) once a day. each time the batch runs, the user metrics data is overwritten entirely.
+the `load_metrics` service is a batch data update for metrics including github contributions, recent github repositories, and leetcode problem solved count. this batch is packaged as an event-driven cloud run job triggered by a cron job (cloud scheduler) once a day. each time the batch runs, the user metrics data is overwritten entirely.
 
-#### load_metrics - development.
+#### load_metrics (development)
 
 ensure that you install the dependencies from the `requirements.txt` file (`pip install -r requirements.txt`). copy the `.env.default` file contents to a `.env` file and insert the information. 
 
 _note_: you will need to create a [github personal access token](https://github.com/settings/tokens) for authenticated api usage
 
-#### load_metrics - containerization.
+#### load_metrics (containerization)
 
 this app is containerized using docker. for installation see [docker ubuntu installation](https://docs.docker.com/engine/install/ubuntu/).
 
@@ -33,7 +33,7 @@ the image should be tagged `giibbu-portfolio-load-metrics`
 
 _note_: the docker container is intended to be run from a deployed google cloud resource (cloud run job), and thus the credentials of a service account are not explicitly defined in the container environment. you will need to specify google service account credentials to run the container locally.
 
-#### load_metrics - upload container image to GCP.
+#### load_metrics (upload container image to GCP)
 
 before the docker container image can be used with google cloud resources like cloud run, the container image needs to be pushed to google container registry (GCR). [full tutorial](https://cloud.google.com/artifact-registry/docs/docker/pushing-and-pulling)
 
@@ -64,26 +64,16 @@ _finally_, push your image to the GCR.
 docker push <LOCATION>-docker.pkg.dev/<PROJECT_ID>/<REPOSITORY>/<IMAGE>:<TAG>
 ```
 
-### gh_contributions (endpoint).
+### metrics
 
-the `gh_contributions` REST API endpoint (TODO insert URL) serves the monthly github contributions for the owner of the portfolio page.
+there are three metrics endpoints for serving github contributions, recent github repositories, and leetcode problem solved count. each of these endpoints follows the following pattern:
 
-#### response format.
+* github contributions -> `api.<BASE URL>/contributions/` link (TODO)
+* leetcode problem solved count -> `api.<BASE URL>/repositories/` link (TODO)
+* leetcode problem sovled count -> `api.<BASE URL>/solved/` link (TODO)
 
-TODO
-
-### gh_repos (endpoint).
-
-the `gh_repos` REST API endpoint (TODO insert URL) serves the recently accessed github repositories for the owner of the portfolio page.
-
-#### response format.
+#### metrics (development)
 
 TODO
 
-### lc_solved (endpoint).
 
-the `lc_solved` REST API endpoint (TODO insert URL) serves the number of solved leetcode problems in each category (_easy_, _medium_, _hard_) for the owner of the portfolio page.
-
-#### response format.
-
-TODO

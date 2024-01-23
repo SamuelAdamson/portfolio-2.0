@@ -1,4 +1,4 @@
-## portofio.
+## portofio
 <br/>
 
 [live site.](https://samueladamson.github.io)
