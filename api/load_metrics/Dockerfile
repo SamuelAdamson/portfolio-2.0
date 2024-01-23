@@ -9,7 +9,6 @@ FROM google/cloud-sdk:latest
 WORKDIR /app
 
 # copy source to working directory
-COPY .env .
 COPY main.py .
 COPY query.py .
 COPY requirements.txt .

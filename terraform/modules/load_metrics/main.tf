@@ -36,6 +36,22 @@ resource "google_cloud_run_v2_job" "load_metrics" {
                     name    = "LC_USERNAME"
                     value   = var.env_lc_username
                 }
+                env {
+                    name    = "COLLECTION"
+                    value   = var.env_metrics_collection
+                }
+                env {
+                    name    = "GH_CONTRIBS_DOC"
+                    value   = var.env_gh_contributions_doc
+                }
+                env {
+                    name    = "GH_REPOS_DOC"
+                    value   = var.env_gh_repos_doc
+                }
+                env {
+                    name    = "LC_SOLVED_DOC"
+                    value   = var.env_lc_solved_doc
+                }
             }
         }
     }

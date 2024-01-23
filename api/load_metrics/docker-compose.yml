@@ -5,5 +5,3 @@ services:
       context: .
       dockerfile: Dockerfile
     image: load-metrics:giibbu-portfolio-load-metrics
-    env_file:
-      - .env

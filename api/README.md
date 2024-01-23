@@ -11,7 +11,11 @@ the `load_metrics` service is a batch data update for metrics including github c
 
 ensure that you install the dependencies from the `requirements.txt` file (`pip install -r requirements.txt`). copy the `.env.default` file contents to a `.env` file and insert the information. 
 
-_note_: you will need to create a [github personal access token](https://github.com/settings/tokens) for authenticated api usage
+_note_: the `.env` file is used solely for development environments. production environment (cloud run) environment variables should be configured in the infrastructure (see `infrastructure/` directory).
+
+#### load_metrics (secrets)
+
+in order to query github data, it is required to make a request to the github api using a [github personal access token](https://github.com/settings/tokens). this is a sensitive piece of authentication information. as such, it should be stored in a [secret manager](https://cloud.google.com/run/docs/configuring/services/secrets) in production (see `infrastructure/` directory for more details).
 
 #### load_metrics (containerization)
 
@@ -75,5 +79,4 @@ there are three metrics endpoints for serving github contributions, recent githu
 #### metrics (development)
 
 TODO
-
 

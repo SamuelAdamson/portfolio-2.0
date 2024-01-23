@@ -35,6 +35,7 @@ variable env_gh_username {
     type        = string
 }
 
+# TODO move to secret manager
 variable env_gh_token {
     description = "Load Metrics Environment Variable -- GitHub Auth Token"
     type        = string
@@ -43,6 +44,26 @@ variable env_gh_token {
 
 variable env_lc_username {
     description = "Load Metrics Environment Variable -- Leetcode Username"
+    type        = string
+}
+
+variable env_metrics_collection {
+    description = "Metrics Firestore Collection Name"
+    type        = string
+}
+
+variable env_gh_contributions_doc {
+    description = "GitHub Contributions Metrics Firestore Document Name"
+    type        = string
+}
+
+variable env_gh_repos_doc {
+    description = "GitHub Repositories Firestore Document Name"
+    type        = string
+}
+
+variable env_lc_solved_doc {
+    description = "Leetcode Solved Count Firestore Document Name"
     type        = string
 }
 
