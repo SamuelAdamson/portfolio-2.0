@@ -51,11 +51,6 @@ _next_, ensure that you are authenticated to the gcr repository. you can do this
 gcloud auth configure-docker
 ```
 
-_troubleshooting authentication_: a token may be required to authenticate to gcloud
-```
-gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://<LOCATION>-docker.pkg.dev
-```
-
 _next_, ensure that your local docker image is properly tagged for GCR.
 
 ```
@@ -68,6 +63,11 @@ _finally_, push your image to the GCR.
 
 ```
 docker push <LOCATION>-docker.pkg.dev/<PROJECT_ID>/<REPOSITORY>/<IMAGE>:<TAG>
+```
+
+_troubleshooting authentication_: a token may be required to authenticate to gcloud
+```
+gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://<LOCATION>-docker.pkg.dev
 ```
 
 ### metrics
