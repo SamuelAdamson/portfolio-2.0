@@ -15,7 +15,9 @@ _note_: the `.env` file is used solely for development environments. production 
 
 #### load_metrics (secrets)
 
-in order to query github data, it is required to make a request to the github api using a [github personal access token](https://github.com/settings/tokens). this is a sensitive piece of authentication information. as such, it should be stored in a [secret manager](https://cloud.google.com/run/docs/configuring/services/secrets) in production (see `infrastructure/` directory for more details).
+in order to query github data, it is required to make a request to the github api using a [github personal access token](https://github.com/settings/tokens). this is a sensitive piece of authentication information. as such, it should be stored in a [secret manager](https://cloud.google.com/run/docs/configuring/services/secrets) in production.
+
+_note_: all secrets are intended to be set up manually and not automated through terraform (see `infrastructure/` directory).
 
 #### load_metrics (containerization)
 
