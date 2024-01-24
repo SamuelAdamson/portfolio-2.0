@@ -29,12 +29,12 @@ resource "google_cloud_run_v2_job" "load_metrics" {
                     value   = var.env_gh_username
                 }
                 env {
-                    name    = "GH_TOKEN"
-                    value   = var.env_gh_token
-                }
-                env {
                     name    = "LC_USERNAME"
                     value   = var.env_lc_username
+                }
+                env {
+                    name    = "DB"
+                    value   = var.env_metrics_db
                 }
                 env {
                     name    = "COLLECTION"
@@ -51,6 +51,15 @@ resource "google_cloud_run_v2_job" "load_metrics" {
                 env {
                     name    = "LC_SOLVED_DOC"
                     value   = var.env_lc_solved_doc
+                }
+                env {
+                    name = "GH_TOKEN"
+                    value_source {
+                        secret_key_ref {
+                            secret  = var.secret_gh_token_id
+                            version = "latest"
+                        }
+                    }
                 }
             }
         }

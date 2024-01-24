@@ -74,9 +74,8 @@ variable env_lc_solved_doc {
     type        = string
 }
 
-# TODO move to secret manager
-variable env_gh_token {
-    description = "Load Metrics Environment Variable -- GitHub Auth Token"
+variable secret_gh_token_id {
+    description = "Google Secret Manager ID for GitHub Personal Access Token"
     type        = string
     sensitive   = true
 }

@@ -25,8 +25,9 @@ module "load_metrics_service" {
 
     cloud_run_container_image   = var.load_metrics_container_image
     env_gh_username             = var.env_gh_username
-    env_gh_token                = var.env_gh_token # TODO move to secret manager
+    secret_gh_token_id          = var.secret_gh_token_id
     env_lc_username             = var.env_lc_username
+    env_metrics_db              = google_firestore_database.metrics_db.name
     env_metrics_collection      = var.env_metrics_collection
     env_gh_contributions_doc    = var.env_gh_contributions_doc
     env_gh_repos_doc            = var.env_gh_repos_doc

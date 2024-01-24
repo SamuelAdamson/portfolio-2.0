@@ -35,15 +35,13 @@ variable env_gh_username {
     type        = string
 }
 
-# TODO move to secret manager
-variable env_gh_token {
-    description = "Load Metrics Environment Variable -- GitHub Auth Token"
-    type        = string
-    sensitive   = true
-}
-
 variable env_lc_username {
     description = "Load Metrics Environment Variable -- Leetcode Username"
+    type        = string
+}
+
+variable env_metrics_db {
+    description = "Metrics Firestore Database Name"
     type        = string
 }
 
@@ -65,6 +63,12 @@ variable env_gh_repos_doc {
 variable env_lc_solved_doc {
     description = "Leetcode Solved Count Firestore Document Name"
     type        = string
+}
+
+variable secret_gh_token_id {
+    description = "Google Secret Manager ID for GitHub Personal Access Token"
+    type        = string
+    sensitive   = true
 }
 
 # Load metrics cloud scheduler
