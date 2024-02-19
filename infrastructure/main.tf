@@ -34,3 +34,13 @@ module "load_metrics_service" {
     env_lc_solved_doc           = var.env_lc_solved_doc
     cloud_run_invoker           = var.gcp_service_account_invoker
 }
+
+# TODO for API Endpoints
+# VPC Network for API Gateway
+#     Three subnets -> one for each region 10.0.1.0/24, 10.0.2.0/24, 10.0.3.0/24
+#     In the future, this should only allow HTTPS (443) not HTTP (80)
+# Cloud armor for API Gateway -> Rate limiting
+# API Gateway set up
+
+# In modules:
+# Cloud function
