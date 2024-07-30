@@ -27,7 +27,7 @@ variable gcp_regions {
 variable gcp_primary_region {
     description = "GCP Primary Region (Firestore, Batch Load Metrics)"
     type        = string
-    default     = "us-west1"
+    default     = "us-east1"
 }
 
 variable gcp_firestore_id {

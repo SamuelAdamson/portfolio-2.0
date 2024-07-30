@@ -5,9 +5,20 @@
 
 ## authentication
 
-to authenticate for terraform deployments, i recommend using [service account impersonation](https://cloud.google.com/docs/authentication/use-service-account-impersonation). service account impersonation allows you to authenticate using your GCP credentials and then act as a service account. this removes the need to manage and store an authentication key for your service account.
+to authenticate for terraform deployments, i recommend using [service account impersonation](https://cloud.google.com/docs/authentication/use-service-account-impersonation). service account impersonation allows you to authenticate using your GCP credentials and then act as a service account. this removes the need to manage and store an authentication service account key for your service account (distribution of a service account key can pose security risks).
 
-see the following tutorial to configure service account impersonation [link](https://cloud.google.com/blog/topics/developers-practitioners/using-google-cloud-service-account-impersonation-your-terraform-code)
+see the following tutorial to configure service account impersonation [link](https://cloud.google.com/blog/topics/developers-practitioners/using-google-cloud-service-account-impersonation-your-terraform-code). before you can follow through with this tutorial, ensure that the [google cloud sdk](https://cloud.google.com/sdk/docs/install) is installed, and your user account is logged in using:
+
+```
+gcloud init
+```
+
+and
+
+```
+gcloud auth application-default login
+```
+
 
 note that your service account will need read/write access to the following resources:
 * cloud run

@@ -1,12 +1,14 @@
 # Samuel Adamson (giibbu)
 # Portfolio Page
-# Terraform Configuration -- Main
+# Terraform Configuration -- Provider
 
 provider "google" {
     project         = var.gcp_project_id
     access_token    = data.google_service_account_access_token.default.access_token
 }
 
+# Extra block added for GCP Service Account Impersonation
+# https://cloud.google.com/blog/topics/developers-practitioners/using-google-cloud-service-account-impersonation-your-terraform-code
 provider "google" {
     alias = "impersonation"
     scopes = [
