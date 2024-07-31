@@ -3,7 +3,7 @@
 # Terraform Configuration -- VPC Network
 
 # TODO
-# resource "google_compute_network" "metrics_network" {  }
+# resource "google_compute_network" "network" {  }
 
 # TODO -- subnetworks 
 #       In main variables file create a list of subnet CIDR blocks which correspond to regions
@@ -14,4 +14,4 @@
 # resource "google_compute_firewall" "allow_https"
 
 # TODO -- Allow HTTP rule (temporary for development [until we have custom domain set up])
-# resource "google_compute_firewall" "allow_https"
+# resource "google_compute_firewall" "allow_http"
