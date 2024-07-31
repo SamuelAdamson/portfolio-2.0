@@ -1,6 +1,6 @@
 # Samuel Adamson (giibbu)
 # Portfolio Page
-# Terraform Configuration -- Provider
+# Terraform Configuration -- Main
 
 provider "google" {
     project         = var.gcp_project_id
